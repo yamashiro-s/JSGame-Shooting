@@ -1,6 +1,5 @@
 // - define -------------------------------------------------------------------
 
-
 // - global -------------------------------------------------------------------
 var screenCanvas, info, score;
 var run = true;
@@ -15,11 +14,10 @@ var scorenum = 0;
 
 // - main ---------------------------------------------------------------------
 window.onload = function(){
-
     // スクリーンの初期化
     screenCanvas = document.getElementById('screen');
-    screenCanvas.width = 256;
-    screenCanvas.height = 256;
+    screenCanvas.width = 800;
+    screenCanvas.height = 600;
 
     // コンテキスト取得
     context = screenCanvas.getContext('2d');
@@ -35,32 +33,6 @@ window.onload = function(){
 
     // 初期化
     init();
-
-    // ループ処理を呼び出す
-    (function(){
-        // HTMLを更新
-        info.innerHTML = mouse.x + ' : ' + mouse.y;
-        score.innerHTML = 'SCORE : ' + scorenum;
-
-        // screenクリア
-        context.clearRect(0, 0, screenCanvas.width, screenCanvas.height);
-
-        // 更新処理
-        chara.mouseMove(mouse);
-        enemy.update();
-        charaShotManager.update();
-
-        // 衝突判定
-        CollisionManager.collision();
-
-        // 描画処理
-        chara.draw(context);
-        enemy.draw(context);
-        charaShotManager.draw(context);
-
-        // フラグにより再帰呼び出し
-        if(run){setTimeout(arguments.callee, fps);}
-    })();
 };
 
 function init(){
@@ -81,6 +53,36 @@ function init(){
     // ゲームの更新処理を始めるようにする
     requestAnimationFrame(update);
   });
+}
+
+function update(){
+  //requestAnimationFrame(update);
+  // HTMLを更新
+  info.innerHTML = mouse.x + ' : ' + mouse.y;
+  score.innerHTML = 'SCORE : ' + scorenum;
+
+  // screenクリア
+  context.clearRect(0, 0, screenCanvas.width, screenCanvas.height);
+
+  // 更新処理
+  chara.mouseMove(mouse);
+  enemy.update();
+  charaShotManager.update();
+
+  // 衝突判定
+  CollisionManager.collision();
+  render();
+
+  if(run){setTimeout(arguments.callee, fps);}
+}
+
+function render(){
+  // 描画処理
+  context.drawImage(Asset.images['back'], 0, 0, 800, 600);
+
+  charaShotManager.draw(context);
+  chara.draw(context);
+  enemy.draw(context);
 }
 
 // - event --------------------------------------------------------------------

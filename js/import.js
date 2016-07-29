@@ -6,3 +6,4 @@ document.write('<script type="text/javascript" src="js/chara_shot.js"></script>'
 document.write('<script type="text/javascript" src="js/enemy.js"></script>');
 
 document.write('<script type="text/javascript" src="js/collision.js"></script>');
+document.write('<script type="text/javascript" src="js/asset.js"></script>');

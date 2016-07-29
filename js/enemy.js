@@ -29,7 +29,7 @@ NormalEnemy.prototype.move = function(){
     this.position.x += this.speed;
 
     // 一定以上の座標に到達していたら生存フラグを降ろす
-    if(this.position.x > 256){
+    if(this.position.x > 800 + this.size){
         //this.alive = false;
         this.position.x = -this.size;
     }

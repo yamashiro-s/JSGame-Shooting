@@ -76,7 +76,7 @@ CharacterShotManager.prototype.update = function(){
       this.shotArray[i].move();
     }else{
       if(!this.fire)continue;
-      this.shotArray[i].set(this.charaPos, 3, 8);
+      this.shotArray[i].set(this.charaPos, 3, 9);
       this.fire = false;
     }
   }
