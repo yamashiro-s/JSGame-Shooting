@@ -34,17 +34,7 @@ window.onload = function(){
     score = document.getElementById('score');
 
     // 初期化
-    chara = new Character();
-    chara.init(10);
-    scorenum = 0;
-
-    charaShotManager = new CharacterShotManager();
-
-    enemy = new NormalEnemy();
-    var pos = new Point();
-    pos.x = -10;
-    pos.y = 50;
-    enemy.set(pos, 8, 2);
+    init();
 
     // ループ処理を呼び出す
     (function(){
@@ -72,6 +62,26 @@ window.onload = function(){
         if(run){setTimeout(arguments.callee, fps);}
     })();
 };
+
+function init(){
+  chara = new Character();
+  chara.init(10);
+  scorenum = 0;
+
+  charaShotManager = new CharacterShotManager();
+
+  enemy = new NormalEnemy();
+  var pos = new Point();
+  pos.x = -10;
+  pos.y = 50;
+  enemy.set(pos, 8, 2);
+
+  Asset.loadAssets(function() {
+    // アセットがすべて読み込み終わったら、
+    // ゲームの更新処理を始めるようにする
+    requestAnimationFrame(update);
+  });
+}
 
 // - event --------------------------------------------------------------------
 function mouseMove(event){
