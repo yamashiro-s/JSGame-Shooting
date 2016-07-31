@@ -79,6 +79,8 @@ function update(){
 function render(){
   // 描画処理
   context.drawImage(Asset.images['back'], 0, 0, 800, 600);
+  context.drawImage(Asset.images['planet1'], 230, 150, 64, 64);
+  context.drawImage(Asset.images['planet2'], 560, 40, 256, 128);
 
   charaShotManager.draw(context);
   chara.draw(context);
@@ -103,3 +105,12 @@ function keyDown(event){
     // Escキーが押されていたらフラグを降ろす
     if(ck === 27){run = false;}
 }
+
+$(document).ready(function () {
+  $('#willbe-logo').plaxify({"xRange":40,"yRange":40})
+  $('#willbe-fishline').plaxify({"xRange":20,"yRange":20})
+  $('#willbe-fish').plaxify({"xRange":70,"yRange":70})
+  $('#willbe-epi').plaxify({"xRange":30,"yRange":100})
+  $('#willbe-hatena').plaxify({"xRange":65,"yRange":65})
+  $.plax.enable()
+})

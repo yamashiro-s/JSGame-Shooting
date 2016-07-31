@@ -3,6 +3,8 @@ var Asset = {}
 // 読み込むアセットの種類
 Asset.assets = [
   {type:'image', name:'player', src:'assets/player.png'},
+  {type:'image', name:'planet1', src:'assets/planet1.png'},
+  {type:'image', name:'planet2', src:'assets/planet2.png'},
   {type:'image', name:'back', src:'assets/back.png'}
 ];
 

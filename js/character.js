@@ -23,13 +23,5 @@ Character.prototype.mouseMove = function(point){
 }
 
 Character.prototype.draw = function(context){
-  // パスの設定を開始
-  //context.beginPath();
-  // 円の色を設定する
-  //context.fillStyle = CHARA_COLOR;
-  // 円を描くパスを設定
-  //context.arc(this.position.x, this.position.y, 10, 0, Math.PI * 2, false);
   context.drawImage(Asset.images['player'], this.position.x-16, this.position.y-16);
-  // 円を描く
-  //context.fill();
 }
