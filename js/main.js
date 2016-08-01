@@ -105,12 +105,3 @@ function keyDown(event){
     // Escキーが押されていたらフラグを降ろす
     if(ck === 27){run = false;}
 }
-
-$(document).ready(function () {
-  $('#willbe-logo').plaxify({"xRange":40,"yRange":40})
-  $('#willbe-fishline').plaxify({"xRange":20,"yRange":20})
-  $('#willbe-fish').plaxify({"xRange":70,"yRange":70})
-  $('#willbe-epi').plaxify({"xRange":30,"yRange":100})
-  $('#willbe-hatena').plaxify({"xRange":65,"yRange":65})
-  $.plax.enable()
-})
