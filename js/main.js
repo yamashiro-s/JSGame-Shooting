@@ -7,7 +7,6 @@ var fps = 1000 / 30;
 var mouse = new Point();
 var context;
 
-var charaShotManager;
 var chara;
 var enemy;
 var scorenum = 0;
@@ -40,8 +39,6 @@ function init(){
   chara.init(10);
   scorenum = 0;
 
-  charaShotManager = new CharacterShotManager();
-
   enemy = new NormalEnemy();
   var pos = new Point();
   pos.x = -10;
@@ -66,8 +63,9 @@ function update(){
 
   // 更新処理
   chara.mouseMove(mouse);
+  chara.update();
   enemy.update();
-  charaShotManager.update();
+  CharacterShotManager.update();
 
   // 衝突判定
   CollisionManager.collision();
@@ -82,7 +80,7 @@ function render(){
   context.drawImage(Asset.images['planet1'], 230, 150, 64, 64);
   context.drawImage(Asset.images['planet2'], 560, 40, 256, 128);
 
-  charaShotManager.draw(context);
+  CharacterShotManager.draw(context);
   chara.draw(context);
   enemy.draw(context);
 }
@@ -95,7 +93,7 @@ function mouseMove(event){
 }
 
 function mouseDown(event){
-    charaShotManager.mouseDown(chara.position);
+
 }
 
 function keyDown(event){

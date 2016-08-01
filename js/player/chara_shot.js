@@ -1,5 +1,4 @@
 var CHARA_SHOT_COLOR = 'rgba(0, 255, 0, 0.75)';
-var CHARA_SHOT_MAX_COUNT = 10;
 
 // - shot ---------------------------------------------------------------------
 function CharacterShot(){
@@ -54,36 +53,30 @@ CharacterShot.prototype.onHit = function(type){
 };
 
 // - shotManager --------------------------------------------------------------
-function CharacterShotManager(){
-  this.shotArray = new Array(CHARA_SHOT_MAX_COUNT);
-  for(i = 0; i < CHARA_SHOT_MAX_COUNT; i++){
-    this.shotArray[i] = new CharacterShot();
-  }
-  this.fire = false;
-  this.charaPos = new Point();
-}
-
-CharacterShotManager.prototype.mouseDown = function(charaPos){
-  if(this.fire == false){
-    this.fire = true;
-    this.charaPos = charaPos;
-  }
+CharacterShotManager = function(){
 };
 
-CharacterShotManager.prototype.update = function(){
-  for(i = 0; i < CHARA_SHOT_MAX_COUNT; i++){
+CharacterShotManager.shotArray = new Array();
+
+CharacterShotManager.addShot = function(charaPos){
+  var shot = new CharacterShot();
+  shot.set(charaPos, 3, 9);
+  this.shotArray.push(shot);
+};
+
+CharacterShotManager.update = function(){
+  for(i = 0; i < this.shotArray.length; i++){
     if(this.shotArray[i].alive){
       this.shotArray[i].move();
     }else{
-      if(!this.fire)continue;
-      this.shotArray[i].set(this.charaPos, 3, 9);
-      this.fire = false;
+      this.shotArray.splice(i, 1);
+      i--;
     }
   }
 };
 
-CharacterShotManager.prototype.draw = function(context){
-  for(i = 0; i < CHARA_SHOT_MAX_COUNT; i++){
+CharacterShotManager.draw = function(context){
+  for(i = 0; i < this.shotArray.length; i++){
     if(this.shotArray[i].alive == true){
       this.shotArray[i].draw(context);
     }

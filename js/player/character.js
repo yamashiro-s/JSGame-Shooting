@@ -1,6 +1,9 @@
 var CHARA_COLOR = 'rgba(0, 0, 255, 0.75)';
-var CHARA_INIT_SPEED = 5;
+var CHARA_INIT_SPEED = 7;
 var CHARA_SIZE = 32;
+
+var FIRE_INTERVAL = 5;
+var fireCount = FIRE_INTERVAL;
 
 function Character(){
     this.position = new Point();
@@ -9,7 +12,15 @@ function Character(){
 }
 
 Character.prototype.init = function(size){
-    this.size = size;
+  this.size = size;
+};
+
+Character.prototype.update = function(){
+  fireCount--;
+  if(fireCount < 0){
+    CharacterShotManager.addShot(this.position);
+    fireCount = FIRE_INTERVAL;
+  }
 };
 
 Character.prototype.mouseMove = function(point){
@@ -21,8 +32,8 @@ Character.prototype.mouseMove = function(point){
   }
   this.position.x += vec.x;
   this.position.y += vec.y;
-}
+};
 
 Character.prototype.draw = function(context){
   context.drawImage(Asset.images['player'], this.position.x-(CHARA_SIZE/2), this.position.y-(CHARA_SIZE/2));
-}
+};
