@@ -1,5 +1,6 @@
 var CHARA_COLOR = 'rgba(0, 0, 255, 0.75)';
 var CHARA_INIT_SPEED = 5;
+var CHARA_SIZE = 32;
 
 function Character(){
     this.position = new Point();
@@ -23,5 +24,5 @@ Character.prototype.mouseMove = function(point){
 }
 
 Character.prototype.draw = function(context){
-  context.drawImage(Asset.images['player'], this.position.x-16, this.position.y-16);
+  context.drawImage(Asset.images['player'], this.position.x-(CHARA_SIZE/2), this.position.y-(CHARA_SIZE/2));
 }
